@@ -270,12 +270,6 @@ div.header-item img {
 	  vertical-align: middle; /* Align the icons vertically in the middle of the list items */
 }
 
-.custom-ytbutton {
-    background-color: #333;
-    padding: 10px;
-    border-radius: 5px;
- }
-
 /* Header and footer styles for mobile screens */
 @media screen and (max-width: 768px) {
 	 body {
