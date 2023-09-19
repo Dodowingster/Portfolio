@@ -1,0 +1,319 @@
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+	margin-top: 100px;
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Dark background color */
+    color: #ff0;
+}
+
+header {
+	position: fixed;
+	top: 0;
+    width: 100%;
+    background: linear-gradient(-45deg, rgba(255, 255, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
+    background-size: 240px 240px; /* Adjust the size as needed */
+    color: #ff0;
+    text-align: center;
+    padding: 1rem 0;
+	z-index: 1000;
+}
+
+footer {
+	background: linear-gradient(45deg, rgba(255, 255, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
+    background-size: 320px 320px; /* Adjust the size as needed */
+    color: #ff0;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer h1{
+	text-shadow:
+		-2px 0 0 black, /* Black outline on the left */
+        2px 0 0 black, /* Black outline on the right */
+        0 -2px 0 black, /* Black outline on the top */
+        0 2px 0 black; /* Black outline on the bottom */
+}
+
+footer p {
+	text-decoration: none;
+    color: #fff;
+	text-shadow:
+		-2px 0 0 black, /* Black outline on the left */
+        2px 0 0 black, /* Black outline on the right */
+        0 -2px 0 black, /* Black outline on the top */
+        0 2px 0 black; /* Black outline on the bottom */
+    font-weight: bold;
+}
+
+.no-fixed {
+    display: none;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+	text-shadow:
+		-2px 0 0 black, /* Black outline on the left */
+        2px 0 0 black, /* Black outline on the right */
+        0 -2px 0 black, /* Black outline on the top */
+        0 2px 0 black; /* Black outline on the bottom */
+    font-weight: bold;
+}
+
+section {
+    padding: 2rem;
+    text-align: center;
+}
+
+h1{
+	text-shadow:
+		 -2px 0 0 black, /* Black outline on the left */
+        2px 0 0 black, /* Black outline on the right */
+        0 -2px 0 black, /* Black outline on the top */
+        0 2px 0 black; /* Black outline on the bottom */
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-item {
+    margin-bottom: 2rem;
+}
+
+.portfolio-item img {
+    max-width: 520px;
+    max-height: 480px; /* Add this line to maintain aspect ratio */
+    border: 2px solid #000; /* Light border color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Light shadow */
+}
+
+/* Add animations */
+.portfolio-item img:hover {
+    transform: scale(1.5);
+    transition: transform 0.3s ease-in-out;
+	border: 2px solid #ff0;
+}
+
+.pixel-item {
+    display: inline-block; /* Ensures the pixel art elements are displayed in a row */
+    margin: 10px; /* Adjust the margin as needed */
+}
+
+.pixel-item img {
+    max-width: 520px;
+    max-height: 320px; /* Add this line to maintain aspect ratio */
+    border: 2px solid #000; /* Light border color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Light shadow */
+}
+
+/* Add animations */
+.pixel-item img:hover {
+    transform: scale(1.5); /* Scale up the image on hover */
+    transition: transform 0.3s ease-in-out;
+	border: 2px solid #ff0;
+}
+
+.art-item {
+    display: inline-block; /* Ensures the artwork elements are displayed in a row */
+    margin: 10px; /* Adjust the margin as needed */
+}
+
+.art-item img {
+    max-width: 100%; /* Ensures the image doesn't exceed its container */
+    height: 520px; /* Allows the image to scale proportionally based on the specified dimensions */
+	border: 2px solid #000; /* Optional: Add a border for separation */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.art-item img:hover {
+    transform: scale(1.2); /* Scale up the image on hover */
+    transition: transform 0.3s ease-in-out;
+	border: 2px solid #ff0;
+}
+
+.photo {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.photo img {
+	max-width: 30%;
+	max-height: 30%;
+    border: 2px solid #000;
+	border-radius: 10px;
+	display: block;
+	margin: 0;
+}
+
+.photo img:hover {
+	transform: scale(1.2); /* Scale up the image on hover */
+    transition: transform 0.3s ease-in-out;
+	border: 2px solid #ff0;
+	cursor: pointer;
+}
+
+div.about-me {
+    background-color: #000; /* Dark background color */
+    color: #ffcc00; /* Yellow text color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(255, 255, 0, 0.5); /* Light shadow */
+    text-align: left; /* Align text to the left */
+    display: inline-block; /* Display as an inline block */
+    max-width: 100%; /* Limit width to fit content */
+    padding: 10px; /* Add some padding for spacing */
+	font-weight: bold;
+}
+
+/* Style the paragraph within the div */
+div.about-me p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#about {
+        display: flex;
+        align-items: center;
+}
+
+.photo {
+	flex: 1;
+}
+
+.about-me {
+        flex: 2;
+    }
+	
+html {
+    scroll-behavior: smooth;
+}
+
+div.header-item img {
+	max-width: 25%;
+	max-height: 25%;
+	border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(255, 255, 0);
+}
+
+.video-item {
+    display: flex;
+    flex-wrap: wrap; /* Wrap if the content overflows the container */
+    gap: 20px; /* Adjust the gap between videos */
+}
+
+.video-item iframe {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow to each iframe */
+    border-radius: 8px; /* Add rounded corners for aesthetics */
+    transition: box-shadow 0.3s ease-in-out; /* Add a smooth transition for the shadow on hover */
+
+    /* Additional styles and adjustments as needed */
+}
+
+.video-item iframe:hover {
+    box-shadow: 0 2px 4px rgba(255, 255, 0);
+}
+
+.centered-text {
+    text-align: center; /* Center-align the text within the .centered-text div */
+	font-size: 24px;
+    font-weight: bold;
+	color: #ff0;
+}
+
+/* Remove bullet points from the ul */
+#contact ul {
+	font-weight: bold;
+	color: #fff;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-shadow:
+		-2px 0 0 black, /* Black outline on the left */
+        2px 0 0 black, /* Black outline on the right */
+        0 -2px 0 black, /* Black outline on the top */
+        0 2px 0 black; /* Black outline on the bottom */
+}
+
+/* Style the list items (icons) */
+#contact li {
+	display: inline-block;
+	margin-right: 20px; /* Adjust the spacing between icons as needed */
+}
+
+/* Style the images (icons) */
+#contact img {
+	  width: 24px; /* Adjust the icon width as needed */
+	  height: 24px; /* Adjust the icon height as needed */
+	  vertical-align: middle; /* Align the icons vertically in the middle of the list items */
+}
+
+/* Header and footer styles for mobile screens */
+@media screen and (max-width: 768px) {
+	 body {
+        margin-top: 60px; /* Reduce the top margin */
+    }
+    
+    header {
+        padding: 0.5rem 0; /* Reduce padding */
+    }
+    
+    footer {
+        padding: 0.5rem 0; /* Reduce padding */
+    }
+    
+    header h1 {
+        font-size: 1.5rem; /* Reduce font size */
+    }
+    
+    nav ul li {
+        margin-right: 10px; /* Reduce margin */
+    }
+    
+    section {
+        padding: 1rem; /* Reduce padding */
+    }
+    
+    h1, h2 {
+        font-size: 1.2rem; /* Reduce font size */
+    }
+    
+    .portfolio-item img,
+    .pixel-item img,
+    .art-item img,
+    .photo img {
+        max-width: 100%; /* Ensure images don't exceed the screen width */
+        max-height: 100%; /* Allow images to scale proportionally */
+    }
+    
+    .about-me {
+        text-align: center; /* Center-align text */
+    }
+    
+    .centered-text {
+        font-size: 20px; /* Reduce font size */
+    }
+}
+
