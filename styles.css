@@ -481,10 +481,14 @@ div.headerp-item img {
 	font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-	color: #FF0;
+	color: #E7C220;
 }
 
-/* Remove bullet points from the ul */
+#contact {
+    font-weight: bold;
+    color: FF0;
+}
+
 #contact ul {
 	font-weight: bold;
 	color: #fff;
