@@ -1,38 +1,3 @@
-/*
-const header = document.querySelector("header");
-let scrollTimeout; // Timeout to track scrolling inactivity
-
-// Function to hide the header with animation
-function hideHeader() {
-    header.classList.add("hidden-header");
-}
-
-// Function to show the header with animation
-function showHeader() {
-    header.classList.remove("hidden-header");
-}
-
-// Function to handle header visibility based on scroll direction
-function handleScroll() {
-    if (window.scrollY > 0) {
-        hideHeader();
-    }
-
-    // Clear the previous timeout
-    clearTimeout(scrollTimeout);
-
-    // Set a timeout to show the header after 1 second (adjust as needed)
-    scrollTimeout = setTimeout(() => {
-        showHeader();
-    }, 1000); // 1000 milliseconds = 1 second
-}
-
-// Add an event listener to call the handleScroll function when scrolling
-window.addEventListener("scroll", handleScroll);
-
-// Initially, show the header on page load
-showHeader();
-*/
 const audio = document.getElementById("myAudio");
 const playPauseButton = document.getElementById("playPauseButton");
 const decoItem = document.querySelector(".Deco-item");
@@ -54,37 +19,38 @@ function togglePlayPause() {
 
 playPauseButton.addEventListener("click", togglePlayPause);
 
-// Select the splash screen element
-const splashScreen = document.getElementById('splash-screen');
+// JavaScript to toggle the widget
+const widgetToggle = document.getElementById('widget-toggle');
+const widget = document.getElementById('widget');
 
-// Text to display in the splash container
-const textToType = "My knowledge, and my all, is yours to take. What would you hear of me?";
+widgetToggle.addEventListener('click', function () {
+    widget.classList.toggle('active');
+});
 
-// Get references to HTML elements
-const textElement = document.getElementById("text");
-const cursorElement = document.getElementById("cursor");
+// Get a reference to the email copy button
+const emailCopyButton = document.getElementById('emailCopyButton');
 
-// Function to simulate typing effect
-function typeText() {
-    let i = 0;
+// Add a click event listener to the button
+emailCopyButton.addEventListener('click', function () {
+    // Create a temporary input element
+    const tempInput = document.createElement('input');
+    
+    // Set its value to the email address you want to copy
+    tempInput.value = 'aqqil.azman99@gmail.com'; // Replace with your email address
+    
+    // Append the input element to the document
+    document.body.appendChild(tempInput);
+    
+    // Select the input's value
+    tempInput.select();
+    
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+    
+    // Remove the temporary input element from the document
+    document.body.removeChild(tempInput);
 
-    // Use an interval to add characters one by one
-    const typingInterval = setInterval(() => {
-        if (i < textToType.length) {
-            textElement.innerHTML += textToType.charAt(i);
-            i++;
-        } else {
-            // Text has been fully typed, clear the interval
-            clearInterval(typingInterval);
-            cursorElement.style.display = "none"; // Hide the cursor
-            
-            setTimeout(() => {
-                splashScreen.style.display = 'none'; // Hide the splash screen
-            }, 2000); // 1000 milliseconds = 1 second
-        }
-    }, 50); // Adjust the interval duration (milliseconds) as needed
-}
+    alert('Email address copied to clipboard: ' + tempInput.value);
+});
 
-// Start the typing animation immediately
-typeText();
 

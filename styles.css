@@ -21,6 +21,18 @@
     }
 }
 
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 0);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 0);
+    }
+}
+
 .slide-up {
     animation: slideUp 0.5s ease forwards;
     opacity: 0; 
@@ -52,21 +64,86 @@
     }
 }
 
+/* Widget Styles */
+.widget {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #000; /* Widget background color */
+    color: #ff0;
+    width: 40px; /* Adjust the width */
+    text-align: center;
+    z-index: 1000; /* Ensure it appears above other content */
+    border-radius: 2px;
+    animation: glow 1s ease-in-out infinite; 
+    box-shadow: -4px 4px rgba(255, 255, 0);
+}
+
+.widget:hover {
+    color: #E7C220;
+}
+
+.widget-toggle {
+    color: #E7C220;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.widget-toggle:hover {
+    color: #ff0;
+}
+
+.widget-content {
+    display: none;
+}
+
+.widget-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.widget-content ul li {
+    margin: 5px 0;
+}
+
+.widget-content ul li a{
+    color: #ff0;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.widget-content ul li a:hover {
+    background-color: #333; /* For example, change background color on hover */
+    color: #E7C220; /* Change text color on hover */
+    border-radius: 2px; /* Add rounded corners on hover */
+}
+
+.widget.active {
+    width: 200px; /* Adjust the expanded width */
+    animation: slideUp 0.2s ease-in-out forwards;
+    opacity: 0;
+}
+
+.widget.active .widget-content {
+    display: block;
+}
+
 #splash-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #333; /* Change to your desired background color */
+    background-color: #000; /* Change to your desired background color */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999; /* Ensure it appears above other content */
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: xx-large;
-    color: #ff0;
+    font-family: Copperplate, Papyrus, fantasy;
+    font-size: 350%;
+    text-align: center;
+    color: #fff;
 }
 
 #splash-container{
@@ -77,7 +154,6 @@
 #cursor {
     animation: blink 1s infinite;
 }
-
 
 .container {
     position: relative;
@@ -149,7 +225,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
-    color: #E7C220;
+    color: #FF0;
 }
 
 header {
@@ -262,7 +338,8 @@ h2 {
 .wallpaper-item img:hover {
     transform: scale(1.2);
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #E7C220;
+	border: 2px solid #ff0;
+    box-shadow: -10px 10px rgba(0, 0, 0);
 }
 
 .pixel-item {
@@ -282,7 +359,8 @@ h2 {
 .pixel-item img:hover {
     transform: scale(1.5); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #E7C220;
+    border: 2px solid #ff0;
+    box-shadow: -10px 10px rgba(0, 0, 0);
 }
 
 .art-item {
@@ -301,7 +379,8 @@ h2 {
 .art-item img:hover {
     transform: scale(1.2); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #E7C220;
+	border: 2px solid #ff0;
+    box-shadow: -10px 10px rgba(0, 0, 0);
     filter: brightness(90%);
 }
 
@@ -336,11 +415,11 @@ div.about-me {
     display: inline-block; /* Display as an inline block */
     max-width: 100%; /* Limit width to fit content */
     padding: 10px; /* Add some padding for spacing */
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Copperplate, Papyrus, fantasy;
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
-    box-shadow: 0px 0px 10px #FF0;
+    box-shadow: -5px 5px rgba(255, 255, 0);
 }
 
 #footer,
@@ -367,13 +446,13 @@ div.header-item img {
     max-width: 100%;
     height: 128px;
 	border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(255, 255, 0);
+    box-shadow: -5px 5px rgba(255, 255, 0);
 }
 
 div.headerp-item img {
     width: 25%;   
 	border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(255, 255, 0);
+    box-shadow: -5px 5px rgba(255, 255, 0);
 }
 
 
@@ -410,8 +489,6 @@ div.headerp-item img {
 	font-weight: bold;
 	color: #fff;
 	list-style: none;
-	padding: 0;
-	margin: 0;
 	text-shadow:
 		-2px 0 0 black, /* Black outline on the left */
         2px 0 0 black, /* Black outline on the right */
@@ -422,13 +499,12 @@ div.headerp-item img {
 /* Style the list items (icons) */
 #contact li {
 	display: inline-block;
-	margin-right: 20px; /* Adjust the spacing between icons as needed */
 }
 
 /* Style the images (icons) */
 #contact img {
-	  width: 24px; /* Adjust the icon width as needed */
-	  height: 24px; /* Adjust the icon height as needed */
+	  width: 32px; /* Adjust the icon width as needed */
+	  height: 32px; /* Adjust the icon height as needed */
 	  vertical-align: middle; /* Align the icons vertically in the middle of the list items */
 }
 
@@ -473,6 +549,23 @@ div.headerp-item img {
 
 /* Header and footer styles for mobile screens */
 @media screen and (max-width: 768px) {
+    #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333; /* Change to your desired background color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Ensure it appears above other content */
+        font-family: Copperplate, Papyrus, fantasy;
+        font-size: medium;
+        color: #ff0;
+        text-align: center;
+    }
+
 	 body {
         margin-top: 60px; /* Reduce the top margin */
     }
