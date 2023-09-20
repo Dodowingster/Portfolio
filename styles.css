@@ -1,8 +1,16 @@
-
 .fade-in {
     animation: fadeIn 1s ease-in-out forwards;
     opacity: 0; 
 }
+
+@keyframes rotate{
+    0% {
+        transform: rotate(0deg); /* Starting point, no rotation */
+      }
+      100% {
+        transform: rotate(360deg); /* Ending point, full rotation (360 degrees) */
+      }
+    }
 
 @keyframes fadeIn {
     from {
@@ -31,6 +39,22 @@
     }
 }
 
+.Deco-item {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: -1; /* Place it behind other content */
+    width: 640px;
+    height: 640px;
+    background-image: url("Resources/Ring.svg"); /* Set your background image */
+    background-size: cover; /* Adjust background size as needed */
+    transform-origin: 50% 50%;
+    animation: rotate 10s linear infinite;
+    filter: opacity(50%);
+  }
+  
+  
 .header-item img,
 .photo img,
 .pixel-static img,
@@ -70,11 +94,15 @@ body, h1, h2, p {
     padding: 0;
 }
 
+h4{
+    color: #FF0;
+}
+
 body {
 	margin-top: 100px;
     font-family: Arial, sans-serif;
     background-color: #333; /* Dark background color */
-    color: #ff0;
+    color: #E7C220;
 }
 
 header {
@@ -83,7 +111,7 @@ header {
     width: 100%;
     background: linear-gradient(-45deg, rgba(255, 204, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
     background-size: 240px 240px; /* Adjust the size as needed */
-    color: #ff0;
+    color: #FF0;
     text-align: center;
     padding: 1rem 0;
 	z-index: 1000;
@@ -91,8 +119,8 @@ header {
 
 footer {
     background: linear-gradient(45deg, rgba(255, 204, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
-    background-size: 320px 320px; /* Adjust the size as needed */
-    color: #ff0;
+    background-size: 240px 240px; /* Adjust the size as needed */
+    color: #E7C220;
     text-align: center;
     padding: 1rem 0;
 }
@@ -126,6 +154,7 @@ header h1 {
 
 nav ul {
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li {
@@ -133,15 +162,12 @@ nav ul li {
     margin-right: 20px;
 }
 
+/* Style the navigation links */
 nav ul li a {
     text-decoration: none;
     color: #fff;
-	text-shadow:
-		-2px 0 0 black, /* Black outline on the left */
-        2px 0 0 black, /* Black outline on the right */
-        0 -2px 0 black, /* Black outline on the top */
-        0 2px 0 black; /* Black outline on the bottom */
     font-weight: bold;
+    text-shadow: -2px 0 0 black, 2px 0 0 black, 0 -2px 0 black, 0 2px 0 black;
 }
 
 section {
@@ -178,7 +204,7 @@ h2 {
 .portfolio-item img:hover {
     transform: scale(1.5);
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #ff0;
+	border: 2px solid #E7C220;
 }
 
 .wallpaper-item img {
@@ -193,7 +219,7 @@ h2 {
 .wallpaper-item img:hover {
     transform: scale(1.2);
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #ff0;
+	border: 2px solid #E7C220;
 }
 
 .pixel-item {
@@ -213,7 +239,7 @@ h2 {
 .pixel-item img:hover {
     transform: scale(1.5); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #ff0;
+	border: 2px solid #E7C220;
 }
 
 .art-item {
@@ -232,7 +258,7 @@ h2 {
 .art-item img:hover {
     transform: scale(1.2); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #ff0;
+	border: 2px solid #E7C220;
     filter: brightness(90%);
 }
 
@@ -240,7 +266,6 @@ h2 {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    filter: brightness(70%);
 }
 
 .photo img {
@@ -255,30 +280,26 @@ h2 {
 .photo img:hover {
 	transform: scale(1.2); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #ff0;
+	border: 2px solid #E7C220;
 	cursor: pointer;
 }
 
+div.footer-item,
 div.about-me {
-    background-color: #000; /* Dark background color */
+    background-color:  #000; /* Dark background color */
     color: #ffcc00; /* Yellow text color */
     border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(255, 255, 0, 0.5); /* Light shadow */
-    text-align: left; /* Align text to the left */
+    text-align: center; /* Align text to the left */
     display: inline-block; /* Display as an inline block */
     max-width: 100%; /* Limit width to fit content */
     padding: 10px; /* Add some padding for spacing */
-	font-weight: bold;
-}
-
-/* Style the paragraph within the div */
-div.about-me p {
-    font-family: Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
 }
 
+#footer,
 #about {
         display: flex;
         align-items: center;
@@ -288,6 +309,7 @@ div.about-me p {
 	flex: 1;
 }
 
+.footer-item,
 .about-me {
         flex: 2;
     }
@@ -334,8 +356,9 @@ div.headerp-item img {
 .centered-text {
     text-align: center; /* Center-align the text within the .centered-text div */
 	font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-	color: #ff0;
+	color: #FF0;
 }
 
 /* Remove bullet points from the ul */
@@ -378,7 +401,7 @@ div.headerp-item img {
 
     .descriptive-item {
         background-color: rgba(0, 0, 0, 0.2); /* Dark background color */
-        color: #ffcc00; /* Text color */
+        color: #E7C220; /* Text color */
         padding: 20px; /* Add some spacing around the content */
         border-radius: 10px; /* Rounded corners for the container */
         margin-bottom: 20px; /* Add margin to separate items if needed */
@@ -485,6 +508,11 @@ div.headerp-item img {
     
     .centered-text {
         font-size: 20px; /* Reduce font size */
+    }
+
+    .Deco-item{
+        width: 260px;
+        height: 260px;
     }
 
     .photo img:hover,
