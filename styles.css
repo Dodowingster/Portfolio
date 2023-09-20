@@ -253,13 +253,15 @@ footer h1{
 
 footer p {
 	text-decoration: none;
-    color: #fff;
+    color: #FF0;
 	text-shadow:
 		-2px 0 0 black, /* Black outline on the left */
         2px 0 0 black, /* Black outline on the right */
         0 -2px 0 black, /* Black outline on the top */
         0 2px 0 black; /* Black outline on the bottom */
     font-weight: bold;
+    text-align: right;
+    margin-left: 10px;
 }
 
 .no-fixed {
