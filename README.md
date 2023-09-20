@@ -1,5 +1,5 @@
 # Aqqil | Dodo's Portfolio
-
+![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
 Welcome to **Aqqil | Dodo's Portfolio**!
 
 ## About
@@ -10,7 +10,7 @@ I'm Aqqil Bin Azman, also known as Dodowingster. I have a background in Software
 
 ### 2D Spritework
 
-Explore my collection of animated and static pixel art creations. From character sprites to environmental assets, each piece tells its own story.
+Explore my collection of animated and static pixel art creations. From character sprites to battle animations, each piece tells its own story.
 
 ### Digital/Traditional Artwork
 
@@ -21,8 +21,8 @@ Discover my digital artwork, which I've been creating since 2017. I've also incl
 Explore my various projects, including:
 
 - **Final Year Projects:** Check out my final year project and its GitHub repository.
-- **Personal Projects:** Dive into my personal game projects, including Augurium Axis and Combat Attorney.
-- **YouTube Content:** Explore my YouTube playlists, covering a range of creative topics.
+- **Personal Projects:** Dive into my personal WIP game project, Augurium Axis and WIP manga Combat Attorney.
+- **YouTube Content:** Explore my YouTube playlists, covering a range of creative videos.
 
 ## Tools
 
@@ -39,5 +39,3 @@ Feel free to get in touch with me:
 Thank you for visiting my portfolio! I hope you find inspiration and enjoyment in exploring my work. I'm excited to connect with fellow art enthusiasts and creators.
 
 ---
-
-![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
