@@ -26,7 +26,7 @@ Explore my various projects, including:
 
 ## Tools
 
-Discover the software tools and resources I use for my creative work. From graphic design to video editing, I've listed the tools that help me bring my ideas to life.
+Discover the software tools and resources I use for my creative work. From graphic design to videogame engines, I've listed the tools that help me bring my ideas to life.
 
 ## Contact
 
@@ -39,7 +39,5 @@ Feel free to get in touch with me:
 Thank you for visiting my portfolio! I hope you find inspiration and enjoyment in exploring my work. I'm excited to connect with fellow art enthusiasts and creators.
 
 ---
-
-*Note: Click the banner on the website to reveal Dodowingster!*
 
 ![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
