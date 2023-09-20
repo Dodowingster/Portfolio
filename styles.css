@@ -1,3 +1,70 @@
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: transform 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-item img,
+.photo img,
+.pixel-static img,
+.wallpaper-item img,
+.art-item img,
+.portfolio-item img,
+.pixel-item img,
+.video-item iframe,
+.centered-text,
+div.about-me,
+section,
+footer,
+nav ul li,
+h2,
+h1,
+nav ul li a,
+div.about-me p {
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+div.about-me,
+section,
+footer,
+nav ul li,
+h2,
+h1,
+nav ul li a,
+div.about-me p {
+    animation: slideUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
 body, h1, h2, p {
     margin: 0;
     padding: 0;
@@ -14,7 +81,7 @@ header {
 	position: fixed;
 	top: 0;
     width: 100%;
-    background: linear-gradient(-45deg, rgba(255, 255, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
+    background: linear-gradient(-45deg, rgba(255, 204, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
     background-size: 240px 240px; /* Adjust the size as needed */
     color: #ff0;
     text-align: center;
@@ -23,7 +90,7 @@ header {
 }
 
 footer {
-	background: linear-gradient(45deg, rgba(255, 255, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
+    background: linear-gradient(45deg, rgba(255, 204, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 50%, rgba(255, 204, 0, 0.5) 75%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.5));
     background-size: 320px 320px; /* Adjust the size as needed */
     color: #ff0;
     text-align: center;
@@ -114,6 +181,21 @@ h2 {
 	border: 2px solid #ff0;
 }
 
+.wallpaper-item img {
+    max-width: 520px;
+    max-height: 480px; /* Add this line to maintain aspect ratio */
+    border: 2px solid #000; /* Light border color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Light shadow */
+}
+
+/* Add animations */
+.wallpaper-item img:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
+	border: 2px solid #ff0;
+}
+
 .pixel-item {
     display: inline-block; /* Ensures the pixel art elements are displayed in a row */
     margin: 10px; /* Adjust the margin as needed */
@@ -144,18 +226,21 @@ h2 {
     height: 520px; /* Allows the image to scale proportionally based on the specified dimensions */
 	border: 2px solid #000; /* Optional: Add a border for separation */
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow */
+    filter: brightness(50%);
 }
 
 .art-item img:hover {
     transform: scale(1.2); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
 	border: 2px solid #ff0;
+    filter: brightness(90%);
 }
 
 .photo {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
+    filter: brightness(70%);
 }
 
 .photo img {
@@ -211,29 +296,39 @@ html {
     scroll-behavior: smooth;
 }
 
-div.header-item img {
-	max-width: 25%;
-	max-height: 25%;
+div.header-item img {   
+    width: auto;
+    max-width: 100%;
+    height: 128px;
 	border-radius: 8px;
     box-shadow: 0 2px 4px rgba(255, 255, 0);
 }
+
+div.headerp-item img {
+    width: 25%;   
+	border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(255, 255, 0);
+}
+
 
 .video-item {
     display: flex;
     flex-wrap: wrap; /* Wrap if the content overflows the container */
     gap: 20px; /* Adjust the gap between videos */
+    align-items: center;
+    justify-content: center;
 }
 
 .video-item iframe {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow to each iframe */
     border-radius: 8px; /* Add rounded corners for aesthetics */
     transition: box-shadow 0.3s ease-in-out; /* Add a smooth transition for the shadow on hover */
-
-    /* Additional styles and adjustments as needed */
+    filter: brightness(50%);
 }
 
 .video-item iframe:hover {
     box-shadow: 0 2px 4px rgba(255, 255, 0);
+    filter: brightness(100%);
 }
 
 .centered-text {
@@ -270,6 +365,45 @@ div.header-item img {
 	  vertical-align: middle; /* Align the icons vertically in the middle of the list items */
 }
 
+.photo img:hover,
+    .pixel-static img:hover,
+    .wallpaper-item img:hover,
+    .art-item img:hover,
+    .portfolio-item img:hover,
+    .pixel-item img:hover{
+        position: relative;
+        z-index: 1;
+    }
+
+
+    .descriptive-item {
+        background-color: rgba(0, 0, 0, 0.2); /* Dark background color */
+        color: #ffcc00; /* Text color */
+        padding: 20px; /* Add some spacing around the content */
+        border-radius: 10px; /* Rounded corners for the container */
+        margin-bottom: 20px; /* Add margin to separate items if needed */
+    }
+    
+    .descriptive-item p {
+        font-size: 16px; /* Adjust the font size for readability */
+        line-height: 1.5; /* Adjust line height for readability */
+        margin: 0; /* Remove default margin */
+    }
+    
+    .tool-item {
+        margin-right: 10px;
+    }
+    
+    .tool-item img {
+        max-width: 64px;
+    }
+    
+    .resources-item img:hover,
+    .tool-item img:hover{
+        transform: scale(1.5); /* Scale up the image on hover */
+        transition: transform 0.3s ease-in-out;
+    }
+
 /* Header and footer styles for mobile screens */
 @media screen and (max-width: 768px) {
 	 body {
@@ -300,12 +434,49 @@ div.header-item img {
         font-size: 1.2rem; /* Reduce font size */
     }
     
-    .portfolio-item img,
-    .pixel-item img,
-    .art-item img,
+    .pixel-item img{
+        max-width: 20%; /* Ensure images don't exceed the screen width */
+        max-height: 20%; /* Allow images to scale proportionally */
+    }
+
+    .portfolio-item img{
+        max-width: 30%; /* Ensure images don't exceed the screen width */
+        height: 128px;
+        width: auto;
+        max-height: 30%;
+    }
+
+    .art-item img{
+        width: 100%;
+        height: auto;
+    }
+
+    .wallpaper-item img{
+        width: 100%;    
+        height: 100%;
+    }
+
+    .pixel-static img {
+        max-width: 20%; /* Ensure images don't exceed the screen width */
+        height: 64px;
+        max-height: auto;
+      }
+
+    .header-item img {
+        width: auto;
+        max-width: 100%;
+    }
+
+    div.headerp-item img {   
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+    }
+    
+
     .photo img {
-        max-width: 100%; /* Ensure images don't exceed the screen width */
-        max-height: 100%; /* Allow images to scale proportionally */
+        max-width: 50%; /* Ensure images don't exceed the screen width */
+        max-height: 50%; /* Allow images to scale proportionally */
     }
     
     .about-me {
@@ -315,5 +486,17 @@ div.header-item img {
     .centered-text {
         font-size: 20px; /* Reduce font size */
     }
-}
 
+    .photo img:hover,
+    .pixel-static img:hover,
+    .wallpaper-item img:hover,
+    .art-item img:hover,
+    .portfolio-item img:hover,
+    .pixel-item img:hover,
+    .resources-item img:hover,
+    .tool-item img:hover{
+        transform: inherit;
+        transition: inherit;
+    }
+
+}
