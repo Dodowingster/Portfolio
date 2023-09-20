@@ -1,43 +1,42 @@
 # Aqqil | Dodo's Portfolio
+![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
 
-Welcome to **Aqqil | Dodo's Portfolio**!
+**Welcome to Aqqil | Dodo's Portfolio!**
 
-## About
+## About Me
 
-I'm Aqqil Bin Azman, also known as Dodowingster. I have a background in Software Engineering and a diploma in Game Development. Over the years, I've cultivated my creative skills and embarked on a journey of self-expression. This website serves as a platform to showcase my evolving body of work, which spans from my high school days to the present.
+I'm Aqqil Bin Azman, known as Dodowingster. With a background in Software Engineering and a diploma in Game Development, I've honed my creative skills over the years. This website is my canvas, showcasing a journey of self-expression from high school to today.
 
-## Artwork
+## Artistic Endeavors
 
 ### 2D Spritework
 
-Explore my collection of animated and static pixel art creations. From character sprites to environmental assets, each piece tells its own story.
+Journey through my world of animated and static pixel art creations. From character sprites to dynamic battle animations, each piece is a narrative in pixels.
 
 ### Digital/Traditional Artwork
 
-Discover my digital artwork, which I've been creating since 2017. I've also included some of my traditional art pieces from my high school days.
+My digital art journey, starting in 2017, is on display here. Explore my digital creations and a glimpse of traditional art from my high school years.
 
-## Projects
+## Creative Projects
 
-Explore my various projects, including:
+Discover my diverse range of projects:
 
-- **Final Year Projects:** Check out my final year project and its GitHub repository.
-- **Personal Projects:** Dive into my personal game projects, including Augurium Axis and Combat Attorney.
-- **YouTube Content:** Explore my YouTube playlists, covering a range of creative topics.
+- **Final Year Projects:** Delve into my final year project and explore its GitHub repository.
+- **Personal Projects:** Immerse yourself in my ongoing game project, Augurium Axis, and work-in-progress manga, Combat Attorney.
+- **YouTube Content:** Unearth my YouTube playlists, offering insights into various creative topics.
 
-## Tools
+## Artistic Tools
 
-Discover the software tools and resources I use for my creative work. From graphic design to videogame engines, I've listed the tools that help me bring my ideas to life.
+Unlock the secrets of my creative toolbox. Explore the software, resources, and engines that fuel my artistic endeavors.
 
-## Contact
+## Let's Connect
 
-Feel free to get in touch with me:
+Reach out and let's connect:
 
 - **Email:** [aqqil.azman99@gmail.com](mailto:aqqil.azman99@gmail.com)
 - **LinkedIn:** [Aqqil Azman](https://www.linkedin.com/in/aqqilazman/)
 - **Resume:** [Download My Resume](Resources/Aqqils_Resume.pdf)
 
-Thank you for visiting my portfolio! I hope you find inspiration and enjoyment in exploring my work. I'm excited to connect with fellow art enthusiasts and creators.
+Thank you for exploring my portfolio! I hope you find inspiration and enjoyment in my work. I'm eager to connect with fellow art enthusiasts and creators.
 
 ---
-
-![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
