@@ -7,12 +7,12 @@ function togglePlayPause() {
     if (audio.paused) {
         // If audio is paused, play it and change the button image
         audio.play();
-        playPauseButton.innerHTML = '<img src="https://cdn.discordapp.com/attachments/1153557771434852413/1153726383109984377/Play.gif">';
+        playPauseButton.innerHTML = '<img src="Resources/arts/pfp.png">';
         decoItem.style.animation = "rotate 10s linear infinite";
     } else {
         // If audio is playing, pause it and change the button image
         audio.pause();
-        playPauseButton.innerHTML = '<img src="https://cdn.discordapp.com/attachments/1153557771434852413/1153667110946472117/image.png">';
+        playPauseButton.innerHTML = '<img src="Resources/arts/pfp.png">';
         decoItem.style.animation = "none";
     }
 }

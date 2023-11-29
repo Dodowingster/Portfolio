@@ -395,8 +395,6 @@ h2 {
 .photo img {
 	max-width: 30%;
 	max-height: 30%;
-    border: 2px solid #000;
-	border-radius: 10px;
 	display: block;
 	margin: 0;
 }
@@ -404,7 +402,6 @@ h2 {
 .photo img:hover {
 	transform: scale(1.2); /* Scale up the image on hover */
     transition: transform 0.3s ease-in-out;
-	border: 2px solid #E7C220;
 	cursor: pointer;
 }
 
