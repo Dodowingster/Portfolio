@@ -1,5 +1,5 @@
 # Aqqil | Dodo's Portfolio
-![Dodowingster](https://cdn.discordapp.com/attachments/1153557771434852413/1153699252799819847/image.png)
+![Dodowingster](https://dodowingster.github.io/Portfolio/Resources/arts/pfp.png)
 
 **Welcome to Aqqil | Dodo's Portfolio!**
 
