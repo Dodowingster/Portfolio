@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqqil | RPG Portfolio Preview</title>
+  <link rel="icon" type="image/png" href="Resources/icon.png" />
+  <style>
+    :root {
+      --bg: #1a120d;
+      --bg-deep: #0e0907;
+      --paper: #e8d7ae;
+      --paper-deep: #d3b57a;
+      --paper-soft: #f3e8ce;
+      --ink: #2d1d12;
+      --ink-soft: #5d3f2f;
+      --bronze: #8a5a31;
+      --bronze-deep: #553720;
+      --line: rgba(76, 47, 27, 0.9);
+      --line-soft: rgba(76, 47, 27, 0.34);
+      --shadow: rgba(0, 0, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(124, 92, 53, 0.28), transparent 30%),
+        linear-gradient(180deg, #1a120d 0%, #201914 100%);
+      letter-spacing: 0.03em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(0, 0, 0, 0.03),
+          rgba(0, 0, 0, 0.03) 1px,
+          transparent 1px,
+          transparent 5px),
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.015),
+          rgba(255, 255, 255, 0.015) 1px,
+          transparent 1px,
+          transparent 6px);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .game-shell {
+      width: min(1220px, calc(100% - 18px));
+      margin: 18px auto 40px;
+      background:
+        linear-gradient(180deg, rgba(227, 198, 142, 0.98), rgba(183, 145, 88, 0.95)),
+        repeating-linear-gradient(0deg, rgba(81, 55, 35, 0.05), rgba(81, 55, 35, 0.05) 1px, transparent 1px, transparent 6px);
+      border: 5px solid var(--bronze-deep);
+      box-shadow:
+        0 0 0 3px rgba(41, 27, 17, 0.9),
+        0 0 0 9px rgba(19, 13, 10, 0.96),
+        0 18px 26px rgba(0, 0, 0, 0.36),
+        inset 0 0 20px rgba(82, 50, 31, 0.14);
+      position: relative;
+    }
+
+    .game-shell::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 3px solid var(--bronze-deep);
+      right: 12px;
+      bottom: 12px;
+      border-left: none;
+      border-top: none;
+      background: rgba(255, 255, 255, 0.03);
+      pointer-events: none;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 18px;
+      border-bottom: 4px solid var(--line);
+      background: linear-gradient(180deg, rgba(101, 71, 39, 0.94), rgba(70, 48, 31, 0.96));
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 9px;
+      color: var(--paper-soft);
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .top-bar .menu {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: end;
+      padding-top: 6px;
+    }
+
+    .tab-btn {
+      position: relative;
+      top: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 14px 6px;
+      border: 2px solid rgba(214, 176, 114, 0.78);
+      border-bottom: none;
+      background: rgba(90, 63, 39, 0.38);
+      color: var(--paper-soft);
+      opacity: 0.98;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 8px;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 1px rgba(245, 218, 167, 0.1);
+      transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      color: var(--ink);
+      background: linear-gradient(180deg, rgba(240, 216, 171, 0.96), rgba(198, 164, 101, 0.9));
+      transform: translateY(-2px);
+      box-shadow: 0 -2px 0 rgba(42, 28, 18, 0.14), inset 0 0 0 1px rgba(93, 63, 38, 0.18);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .hud {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .panel {
+      background:
+        linear-gradient(180deg, rgba(230, 211, 174, 0.98), rgba(193, 158, 102, 0.94)),
+        repeating-linear-gradient(0deg, rgba(81, 55, 35, 0.04), rgba(81, 55, 35, 0.04) 1px, transparent 1px, transparent 7px);
+      border: 4px solid var(--bronze-deep);
+      box-shadow:
+        inset 0 0 0 2px rgba(116, 77, 42, 0.4),
+        inset 0 0 18px rgba(74, 48, 30, 0.08),
+        0 6px 0 rgba(34, 20, 12, 0.4);
+      position: relative;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 3px solid var(--line-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-size: 9px;
+      color: var(--bronze-deep);
+      background: rgba(84, 60, 35, 0.04);
+    }
+
+    .panel-header .tag {
+      padding: 5px 8px;
+      border: 2px solid var(--line);
+      background: rgba(101, 71, 39, 0.08);
+      color: var(--bronze-deep);
+    }
+
+    .profile-panel {
+      padding: 18px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+    }
+
+    .portrait-wrap {
+      background: rgba(82, 54, 32, 0.08);
+      border: 3px solid var(--line-soft);
+      padding: 8px;
+      box-shadow: inset 0 0 0 2px rgba(88, 56, 31, 0.14);
+    }
+
+    .portrait-wrap img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 2px solid rgba(88, 56, 31, 0.4);
+      image-rendering: pixelated;
+    }
+
+    .identity h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 4.1rem);
+      line-height: 0.95;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.12), -1px -1px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .identity .subtitle {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bronze-deep);
+    }
+
+    .identity .bio {
+      margin-top: 18px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 64ch;
+      font-size: 0.92rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 3px solid var(--line);
+      background: linear-gradient(180deg, rgba(116, 84, 45, 0.12), rgba(82, 58, 34, 0.18));
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 9px;
+      box-shadow: 3px 3px 0 rgba(42, 28, 18, 0.42);
+      transition: transform 0.12s ease;
+    }
+
+    .button:hover {
+      transform: translate(-1px, -1px);
+    }
+
+    .button.primary {
+      background: linear-gradient(180deg, rgba(133, 97, 52, 0.14), rgba(86, 63, 36, 0.2));
+    }
+
+    .journal-strip {
+      margin-top: 22px;
+      border: 3px solid rgba(76, 47, 27, 0.72);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px 14px;
+      box-shadow: inset 0 0 0 1px rgba(87, 62, 35, 0.14);
+      position: relative;
+    }
+
+    .journal-strip::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 7px;
+      height: 2px;
+      background: rgba(76, 47, 27, 0.2);
+    }
+
+    .journal-strip strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 9px;
+      margin-bottom: 8px;
+      color: var(--bronze-deep);
+    }
+
+    .journal-strip p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+
+    .status-box {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px dashed rgba(88, 56, 31, 0.35);
+      padding-bottom: 6px;
+    }
+
+    .status-row strong {
+      color: var(--bronze-deep);
+      font-weight: 700;
+    }
+
+    .stats {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .stat {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .cube-meter {
+      display: grid;
+      grid-template-columns: repeat(5, 10px);
+      gap: 5px;
+      justify-content: end;
+    }
+
+    .cube {
+      width: 10px;
+      height: 10px;
+      border: 2px solid rgba(88, 56, 31, 0.6);
+      background: rgba(77, 52, 28, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      transition: background 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .cube.filled {
+      background: linear-gradient(180deg, #a57b42, #7a562d);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 0 0 1px rgba(88, 56, 31, 0.1);
+    }
+
+    .mini-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--ink-soft);
+    }
+
+    .mini-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px dashed rgba(88, 56, 31, 0.35);
+      padding-bottom: 6px;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      padding: 0 18px 18px;
+    }
+
+    .quest-list,
+    .links-list,
+    .inventory,
+    .gallery-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .quest-list {
+      padding: 18px;
+    }
+
+    .quest-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid rgba(88, 56, 31, 0.32);
+      padding: 14px 16px;
+      box-shadow: inset 0 0 0 1px rgba(112, 82, 51, 0.18);
+    }
+
+    .quest-card h3 {
+      margin: 0 0 8px;
+      color: var(--bronze-deep);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .quest-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      font-size: 0.78rem;
+    }
+
+    .quest-tag {
+      align-self: center;
+      padding: 6px 10px;
+      border: 2px solid var(--line);
+      background: rgba(122, 88, 49, 0.08);
+      color: var(--bronze-deep);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .inventory {
+      padding: 18px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tool-item {
+      padding: 12px 10px;
+      border: 2px solid rgba(88, 56, 31, 0.32);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tool-icon {
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(138, 90, 40, 0.16), rgba(66, 46, 31, 0.1)),
+        repeating-linear-gradient(0deg, rgba(30, 20, 15, 0.08), rgba(30, 20, 15, 0.08) 2px, transparent 2px, transparent 4px);
+      display: grid;
+      place-items: center;
+      font-size: 0.68rem;
+      color: var(--bronze-deep);
+      font-weight: 700;
+      image-rendering: pixelated;
+    }
+
+    .tool-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .tool-meta strong {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .tool-meta span {
+      font-size: 0.62rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .gallery-grid {
+      padding: 18px;
+    }
+
+    .folder-archive {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .artifact-folder {
+      position: relative;
+      width: 100%;
+      max-width: 240px;
+      min-height: 220px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 12px 12px;
+      overflow: visible;
+      transition: transform 0.18s ease;
+    }
+
+    .artifact-folder:hover {
+      transform: translateY(-2px);
+    }
+
+    .folder-menu.is-open {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    .artifact-folder:hover .folder-body,
+    .artifact-folder:focus-within .folder-body {
+      box-shadow: 6px 6px 0 rgba(42, 28, 18, 0.32), inset 0 0 0 2px rgba(82, 58, 35, 0.12);
+    }
+
+    .folder-body {
+      position: relative;
+      width: 100%;
+      min-height: 170px;
+      padding: 30px 18px 12px;
+      background:
+        linear-gradient(180deg, rgba(230, 204, 166, 0.98), rgba(192, 153, 96, 0.93)),
+        repeating-linear-gradient(90deg,
+          rgba(116, 88, 52, 0.05),
+          rgba(116, 88, 52, 0.05) 2px,
+          transparent 2px,
+          transparent 8px);
+      border: 3px solid var(--line);
+      box-shadow: 5px 5px 0 rgba(42, 28, 18, 0.28), inset 0 0 0 2px rgba(82, 58, 35, 0.09);
+      overflow: hidden;
+      transition: box-shadow 0.18s ease;
+    }
+
+    /* Removing the folder-body::before pseudo-element */
+    /* .folder-body::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: -16px;
+      height: 18px;
+      border: 3px solid var(--line);
+      border-bottom: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(90,62,36,0.08));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    } */
+
+    .folder-body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 20%, transparent 68%, rgba(100, 74, 46, 0.09)),
+        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.14), transparent 24%),
+        repeating-linear-gradient(0deg,
+          rgba(96, 72, 45, 0.04),
+          rgba(96, 72, 45, 0.04) 1px,
+          transparent 1px,
+          transparent 6px);
+      pointer-events: none;
+    }
+
+    .folder-button {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 18px);
+      height: 72px;
+      margin: 0 auto 12px;
+      border: 3px solid var(--line);
+      background: linear-gradient(180deg, rgba(174, 130, 83, 0.14), rgba(78, 53, 32, 0.17));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 0.12s ease, filter 0.12s ease;
+      box-shadow: inset 0 0 0 1px rgba(81, 54, 32, 0.12);
+    }
+
+    .folder-button:hover {
+      transform: translate(-1px, -1px);
+      filter: brightness(1.02);
+    }
+
+    .folder-caption {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 18px);
+      margin: 0 auto;
+      padding: 9px 10px;
+      border: 2px solid rgba(88, 56, 31, 0.5);
+      background: rgba(98, 69, 40, 0.07);
+      text-align: center;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      line-height: 1.4;
+      box-shadow: inset 0 0 0 1px rgba(88, 56, 31, 0.08);
+    }
+
+    .folder-menu {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0.86);
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .folder-menu::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 190px;
+      height: 190px;
+      transform: translate(-50%, -50%);
+      border: 2px dashed rgba(88, 56, 31, 0.28);
+      border-radius: 50%;
+      opacity: 0.88;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 65%);
+    }
+
+    .folder-item {
+      --x: 0px;
+      --y: 0px;
+      --delay: 0ms;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 70px;
+      height: 70px;
+      margin-left: -35px;
+      margin-top: -35px;
+      border: 2px solid rgba(88, 56, 31, 0.4);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06), 0 3px 0 rgba(42, 28, 18, 0.1);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      display: block;
+      text-decoration: none;
+      opacity: 0;
+      transform: translate(0, 0) scale(0.15);
+      transform-origin: center;
+      transition: box-shadow 0.12s ease;
+      z-index: 11;
+    }
+
+    @keyframes folderItemPop {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.15);
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translate(var(--x), var(--y)) scale(1);
+      }
+    }
+
+    .folder-menu.is-open .folder-item {
+      animation: folderItemPop 260ms cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+      animation-delay: var(--delay);
+    }
+
+    .folder-item:hover {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.14), 0 8px 14px rgba(0, 0, 0, 0.18), 0 3px 0 rgba(42, 28, 18, 0.12);
+    }
+
+    .folder-item::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 50%;
+      bottom: -21px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: rgba(232, 215, 174, 0.9);
+      border: 1px solid rgba(88, 56, 31, 0.35);
+      padding: 3px 5px;
+      box-shadow: 0 2px 0 rgba(42, 28, 18, 0.14);
+    }
+
+    .art-grid {
+      display: none;
+    }
+
+    .art-card {
+      display: none;
+    }
+
+    .links-list {
+      padding: 18px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 2px solid rgba(88, 56, 31, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .link-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .link-label strong {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .link-label span {
+      color: var(--ink-soft);
+      font-size: 0.64rem;
+    }
+
+    .status-pill {
+      padding: 6px 10px;
+      border: 2px solid var(--line);
+      color: var(--bronze-deep);
+      background: rgba(122, 88, 49, 0.08);
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    footer {
+      padding: 14px 18px 18px;
+      border-top: 3px solid var(--line-soft);
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 9px;
+    }
+
+    @media (max-width: 980px) {
+
+      .hud,
+      .content-grid,
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .art-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .top-bar {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .top-bar .menu {
+        justify-content: center;
+      }
+
+      .tool-grid,
+      .art-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .identity h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="game-shell">
+    <header class="top-bar">
+      <div class="menu" role="tablist" aria-label="Portfolio navigation">
+        <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="character">Character</button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="inventory">Inventory</button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="quests">Quest Log</button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="gallery">Bestiary</button>
+        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="links">Companions</button>
+      </div>
+      <div>Guild Ledger // Portfolio</div>
+    </header>
+
+    <main>
+      <section class="tab-panel active hud" data-tab="character" id="character">
+        <div class="panel profile-panel">
+          <div class="profile-grid">
+            <div class="portrait-wrap">
+              <img src="Resources/arts/pfp.png" alt="Aqqil portrait" />
+            </div>
+
+            <div class="identity">
+              <div class="subtitle">Level 29 // Creative Engineer</div>
+              <h1>Aqqil<br />Bin Azman</h1>
+              <div class="subtitle">dodowingster</div>
+
+              <p class="bio">
+                I build software, tools, art, and gameplay-driven experiences. I am a creative problem solver first,
+                but I am also deeply technical — someone who enjoys turning friction into systems, ideas into projects,
+                and imagination into interactive worlds.
+              </p>
+
+              <div class="cta-row">
+                <a class="button primary" href="#quests">View Quests</a>
+                <a class="button" href="https://github.com/Dodowingster" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="button" href="Resources/Aqqils_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+              </div>
+
+              <div class="journal-strip">
+                <strong>Guild Note</strong>
+                <p>
+                  I am a creative engineer with a love for systems, storytelling, and worlds.
+                  I build tools to solve problems, create art to express ideas, and pursue game development
+                  because I want to shape experiences that feel alive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel status-box">
+          <div class="panel-header">
+            <span>Character Status</span>
+            <span class="tag">Active</span>
+          </div>
+
+          <div class="status-row">
+            <strong>Class</strong>
+            <span>Creative Engineer</span>
+          </div>
+
+          <div class="status-row">
+            <strong>Specialty</strong>
+            <span>Game Dev / Tools / Art</span>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Coding</div>
+              <div class="cube-meter" aria-label="Coding level 4 out of 5">
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube"></span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Art</div>
+              <div class="cube-meter" aria-label="Art level 5 out of 5">
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Problem Solving</div>
+              <div class="cube-meter" aria-label="Problem solving level 4 out of 5">
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube"></span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="label">Game Design</div>
+              <div class="cube-meter" aria-label="Game design level 4 out of 5">
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube filled"></span>
+                <span class="cube"></span>
+              </div>
+            </div>
+          </div>
+
+          <ul class="mini-list">
+            <li><span>Primary Goal</span><strong>Build worlds</strong></li>
+            <li><span>Focus</span><strong>Creative tech</strong></li>
+            <li><span>Current Path</span><strong>Game dev + tools</strong></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="tab-panel" data-tab="quests">
+        <div class="panel">
+          <div class="panel-header">
+            <span>Quest Log</span>
+            <span class="tag">Featured</span>
+          </div>
+
+          <div class="quest-list" id="quests">
+            <article class="quest-card">
+              <div>
+                <h3>YouTube Looper</h3>
+                <p>Built a workflow tool to solve repeated review and playback frustrations during content preparation.
+                </p>
+              </div>
+              <div class="quest-tag">Tool</div>
+            </article>
+
+            <article class="quest-card">
+              <div>
+                <h3>Postman API Documentator</h3>
+                <p>Created a documentation workflow to reduce manual effort and improve API clarity for personal and
+                  project use.</p>
+              </div>
+              <div class="quest-tag">Automation</div>
+            </article>
+
+            <article class="quest-card">
+              <div>
+                <h3>Augurium Axis</h3>
+                <p>An original indie action / strategy concept blending tactical RPG systems with creative worldbuilding
+                  and narrative direction.</p>
+              </div>
+              <div class="quest-tag">Game</div>
+            </article>
+
+            <article class="quest-card">
+              <div>
+                <h3>Skyrim Modding</h3>
+                <p>Developed and published custom content focused on gameplay systems, interface design, and visual
+                  polish.</p>
+              </div>
+              <div class="quest-tag">Mods</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab="inventory">
+        <div class="panel" id="inventory">
+          <div class="panel-header">
+            <span>Equipment</span>
+            <span class="tag">Tools</span>
+          </div>
+
+          <div class="inventory">
+            <div class="tool-grid">
+              <div class="tool-item">
+                <div class="tool-icon">AS</div>
+                <div class="tool-meta">
+                  <strong>Aseprite</strong>
+                  <span>Pixel Art</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">VS</div>
+                <div class="tool-meta">
+                  <strong>VS Code</strong>
+                  <span>Engineering</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">UN</div>
+                <div class="tool-meta">
+                  <strong>Unity</strong>
+                  <span>Game Dev</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">BL</div>
+                <div class="tool-meta">
+                  <strong>Blender</strong>
+                  <span>3D</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">PT</div>
+                <div class="tool-meta">
+                  <strong>Paint.NET</strong>
+                  <span>Concepts</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">KR</div>
+                <div class="tool-meta">
+                  <strong>Krita</strong>
+                  <span>Illustration</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">AU</div>
+                <div class="tool-meta">
+                  <strong>Audacity</strong>
+                  <span>Audio</span>
+                </div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">GH</div>
+                <div class="tool-meta">
+                  <strong>GitHub</strong>
+                  <span>Workflow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab="gallery">
+        <div class="panel" id="gallery" style="margin: 0 18px 18px;">
+          <div class="panel-header">
+            <span>Bestiary Archive</span>
+            <span class="tag">Art & Worlds</span>
+          </div>
+
+          <div class="gallery-grid">
+            <div id="folderArchive" class="folder-archive" aria-label="Art folders"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab="links">
+        <div class="content-grid" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-header">
+              <span>Codex</span>
+              <span class="tag">Projects</span>
+            </div>
+
+            <div class="links-list">
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>GitHub</strong>
+                  <span>Repositories and software experiments</span>
+                </div>
+                <a class="status-pill" href="https://github.com/Dodowingster" target="_blank" rel="noreferrer">Open</a>
+              </div>
+
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>Pixiv</strong>
+                  <span>Illustration archive and sketches</span>
+                </div>
+                <span class="status-pill">Archive</span>
+              </div>
+
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>Nexus Mods</strong>
+                  <span>Custom content and gameplay systems</span>
+                </div>
+                <a class="status-pill" href="https://www.nexusmods.com/skyrimspecialedition/mods/100433" target="_blank"
+                  rel="noreferrer">Open</a>
+              </div>
+
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>YouTube</strong>
+                  <span>Video logs, ideas, and content</span>
+                </div>
+                <span class="status-pill">Journal</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="links">
+            <div class="panel-header">
+              <span>Companions</span>
+              <span class="tag">Links</span>
+            </div>
+
+            <div class="links-list">
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>LinkedIn</strong>
+                  <span>Professional profile</span>
+                </div>
+                <a class="status-pill" href="https://www.linkedin.com/in/aqqilazman/" target="_blank"
+                  rel="noreferrer">Visit</a>
+              </div>
+
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>Email</strong>
+                  <span>Contact</span>
+                </div>
+                <span class="status-pill">Direct</span>
+              </div>
+
+              <div class="link-card">
+                <div class="link-label">
+                  <strong>Resume</strong>
+                  <span>Career profile</span>
+                </div>
+                <a class="status-pill" href="Resources/Aqqils_Resume.pdf" target="_blank" rel="noreferrer">Open</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Campaign Log // Aqqil Bin Azman</span>
+      <span>Creative Engineer // Game Dev Mindset</span>
+    </footer>
+  </div>
+
+  <script>
+    const artCollections = [
+      {
+        title: 'Pixel',
+        tag: 'Sprites / Loops',
+        items: [
+          { title: 'TN Idle', image: 'Resources/pixel/TN_id.gif' },
+          { title: 'Ifrit', image: 'Resources/pixel/Ifrit.gif' },
+          { title: 'Sprite 57', image: 'Resources/pixel/57.png' },
+          { title: 'Wisp', image: 'Resources/pixel/Ifrit.gif' },
+          { title: 'Hero', image: 'Resources/pixel/TN_id.gif' }
+        ]
+      },
+      {
+        title: 'Characters',
+        tag: 'Portraits',
+        items: [
+          { title: 'Portrait', image: 'Resources/arts/pfp.png' },
+          { title: 'Ellone', image: 'Resources/arts/Ellone.png' },
+          { title: 'AB', image: 'Resources/arts/AB.png' },
+          { title: 'TN', image: 'Resources/arts/TN.png' }
+        ]
+      },
+      {
+        title: 'Worlds',
+        tag: 'Scenes / Lore',
+        items: [
+          { title: 'Town', image: 'Resources/arts/TN.png' },
+          { title: 'Ruin', image: 'Resources/arts/AB.png' },
+          { title: 'Gate', image: 'Resources/arts/Ellone.png' },
+          { title: 'Forest', image: 'Resources/arts/pfp.png' }
+        ]
+      },
+      {
+        title: 'Mods',
+        tag: 'Custom content',
+        items: [
+          { title: 'Skyrim', image: 'Resources/arts/AB.png' },
+          { title: 'UI', image: 'Resources/pixel/57.png' },
+          { title: 'Quest', image: 'Resources/arts/TN.png' },
+          { title: 'Build', image: 'Resources/pixel/Ifrit.gif' }
+        ]
+      }
+    ];
+
+    function createCategoryFolder({ title, tag, items }) {
+      const folder = document.createElement('div');
+      folder.className = 'artifact-folder';
+
+      const menu = document.createElement('div');
+      menu.className = 'folder-menu';
+
+      items.forEach((item, index) => {
+        const angle = ((Math.PI * 2) / items.length) * index - Math.PI / 2;
+        const radius = 92;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        const itemLink = document.createElement('a');
+        itemLink.href = '#';
+        itemLink.className = 'folder-item';
+        itemLink.title = `${title} // ${item.title}`;
+        itemLink.dataset.title = item.title;
+        itemLink.style.setProperty('--x', `${x}px`);
+        itemLink.style.setProperty('--y', `${y}px`);
+        itemLink.style.setProperty('--delay', `${index * 40}ms`);
+        itemLink.style.backgroundImage = `url('${item.image}')`;
+        itemLink.setAttribute('aria-label', `${item.title} from ${title}`);
+
+        itemLink.addEventListener('click', (event) => {
+          event.preventDefault();
+        });
+
+        menu.appendChild(itemLink);
+      });
+
+      const folderBody = document.createElement('div');
+      folderBody.className = 'folder-body';
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'folder-button';
+      button.innerHTML = title;
+      button.setAttribute('aria-label', `${title} category folder`);
+
+      const caption = document.createElement('div');
+      caption.className = 'folder-caption';
+      caption.textContent = tag;
+
+      const updateMenuOrigin = () => {
+        const folderRect = folder.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+        const left = buttonRect.left - folderRect.left + (buttonRect.width / 2);
+        const top = buttonRect.top - folderRect.top + (buttonRect.height / 2);
+        menu.style.left = `${left}px`;
+        menu.style.top = `${top}px`;
+      };
+
+      const syncMenuPosition = () => {
+        updateMenuOrigin();
+        requestAnimationFrame(updateMenuOrigin);
+      };
+
+      const setMenuOpen = (isOpen) => {
+        menu.classList.toggle('is-open', isOpen);
+      };
+
+      syncMenuPosition();
+      window.addEventListener('resize', syncMenuPosition);
+      button.addEventListener('mouseenter', () => {
+        syncMenuPosition();
+        setMenuOpen(true);
+      });
+      button.addEventListener('focus', () => {
+        syncMenuPosition();
+        setMenuOpen(true);
+      });
+      folder.addEventListener('mouseleave', () => setMenuOpen(false));
+      folder.addEventListener('focusout', () => setMenuOpen(false));
+
+      folderBody.appendChild(button);
+      folderBody.appendChild(caption);
+
+      folder.appendChild(menu);
+      folder.appendChild(folderBody);
+
+      return folder;
+    }
+
+    const folderArchive = document.getElementById('folderArchive');
+    if (folderArchive) {
+      artCollections.forEach((collection) => {
+        folderArchive.appendChild(createCategoryFolder(collection));
+      });
+    }
+
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(target) {
+      tabButtons.forEach((button) => {
+        const isActive = button.dataset.tab === target;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
+      });
+
+      tabPanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.tab === target);
+      });
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => activateTab(button.dataset.tab));
+    });
+  </script>
+</body>
+
+</html>
