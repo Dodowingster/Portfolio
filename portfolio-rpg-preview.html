@@ -155,10 +155,140 @@
 
     .tab-panel {
       display: none;
+      margin: 0 18px;
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      transition: opacity 0.32s ease, transform 0.36s ease;
+    }
+
+    .tab-panel[hidden] {
+      display: none !important;
     }
 
     .tab-panel.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .tab-panel.is-exiting {
+      opacity: 0;
+      transform: translateY(10px) scale(0.97);
+    }
+
+    .profile-summary {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      margin: 18px 18px 0;
+      padding: 14px 18px;
+      border: 4px solid var(--bronze-deep);
+      background:
+        linear-gradient(180deg, rgba(230, 211, 174, 0.98), rgba(193, 158, 102, 0.94)),
+        repeating-linear-gradient(0deg, rgba(81, 55, 35, 0.04), rgba(81, 55, 35, 0.04) 1px, transparent 1px, transparent 7px);
+      box-shadow:
+        inset 0 0 0 2px rgba(116, 77, 42, 0.4),
+        inset 0 0 18px rgba(74, 48, 30, 0.08),
+        0 6px 0 rgba(34, 20, 12, 0.4);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateY(-10px) scaleY(0.9);
+      transition: opacity 0.28s ease, transform 0.32s ease, margin 0.28s ease, max-height 0.32s ease, padding 0.28s ease, border-width 0.28s ease;
+      will-change: opacity, transform, max-height;
+    }
+
+    .profile-summary.visible {
+      opacity: 1;
+      max-height: 170px;
+      pointer-events: auto;
+      transform: translateY(0) scaleY(1);
+    }
+
+    .profile-summary-avatar {
+      width: 72px;
+      height: 72px;
+      border: 3px solid var(--line);
+      background: rgba(82, 54, 32, 0.08);
+      box-shadow: inset 0 0 0 2px rgba(88, 56, 31, 0.14);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .profile-summary-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+
+    .profile-summary-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .profile-summary-kicker {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bronze-deep);
+    }
+
+    .profile-summary-name {
+      font-size: clamp(1.1rem, 2vw, 1.8rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-summary-meta .tag {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-top: 4px;
+      padding: 4px 8px;
+      border: 2px solid var(--line);
+      background: rgba(101, 71, 39, 0.08);
+      color: var(--bronze-deep);
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .profile-summary-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+      min-width: 260px;
+    }
+
+    .profile-summary-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 110px;
+      text-align: left;
+    }
+
+    .profile-summary-stat span {
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bronze-deep);
+    }
+
+    .profile-summary-stat strong {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
     }
 
     .hud {
@@ -166,6 +296,14 @@
       grid-template-columns: 1.25fr 0.75fr;
       gap: 18px;
       padding: 18px;
+      transition: opacity 0.28s ease, transform 0.32s ease;
+    }
+
+    .game-shell.profile-compact .tab-panel[data-tab="character"] {
+      opacity: 0.36;
+      transform: translateY(10px) scaleY(0.88);
+      transform-origin: top center;
+      filter: blur(0.35px);
     }
 
     .panel {
@@ -847,6 +985,29 @@
     </header>
 
     <main>
+      <section class="profile-summary" aria-label="Profile summary">
+        <div class="profile-summary-avatar">
+          <img src="Resources/arts/pfp.png" alt="Aqqil portrait" />
+        </div>
+
+        <div class="profile-summary-meta">
+          <div class="profile-summary-kicker">Level 29 // Creative Engineer</div>
+          <div class="profile-summary-name">Aqqil Bin Azman</div>
+          <span class="tag">Guild Ledger</span>
+        </div>
+
+        <div class="profile-summary-stats" aria-label="Core profile stats">
+          <div class="profile-summary-stat">
+            <span>Class</span>
+            <strong>Creative Engineer</strong>
+          </div>
+          <div class="profile-summary-stat">
+            <span>Path</span>
+            <strong>Game Dev / Tools</strong>
+          </div>
+        </div>
+      </section>
+
       <section class="tab-panel active hud" data-tab="character" id="character">
         <div class="panel profile-panel">
           <div class="profile-grid">
@@ -998,7 +1159,7 @@
       </section>
 
       <section class="tab-panel" data-tab="inventory">
-        <div class="panel" id="inventory">
+        <div class="panel" id="inventory-panel">
           <div class="panel-header">
             <span>Equipment</span>
             <span class="tag">Tools</span>
@@ -1124,7 +1285,7 @@
             </div>
           </div>
 
-          <div class="panel" id="links">
+          <div class="panel" id="links-panel">
             <div class="panel-header">
               <span>Companions</span>
               <span class="tag">Links</span>
@@ -1305,8 +1466,14 @@
 
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
+    const profileSummary = document.querySelector('.profile-summary');
+    const shell = document.querySelector('.game-shell');
+    let activeTab = 'character';
 
     function activateTab(target) {
+      const previousTab = activeTab;
+      const isLeavingCharacter = previousTab === 'character' && target !== 'character';
+
       tabButtons.forEach((button) => {
         const isActive = button.dataset.tab === target;
         button.classList.toggle('active', isActive);
@@ -1314,13 +1481,44 @@
       });
 
       tabPanels.forEach((panel) => {
-        panel.classList.toggle('active', panel.dataset.tab === target);
+        const isTarget = panel.dataset.tab === target;
+        const isPrevious = panel.dataset.tab === previousTab && isLeavingCharacter;
+        const isActive = isTarget || isPrevious;
+
+        panel.classList.toggle('active', isActive);
+        panel.classList.toggle('is-exiting', isPrevious);
+        panel.hidden = !isActive;
+        panel.setAttribute('aria-hidden', String(!isActive));
       });
+
+      const shouldShowSummary = target !== 'character';
+      requestAnimationFrame(() => {
+        shell.classList.toggle('profile-compact', shouldShowSummary);
+        profileSummary.classList.toggle('visible', shouldShowSummary);
+      });
+
+      if (isLeavingCharacter) {
+        setTimeout(() => {
+          tabPanels.forEach((panel) => {
+            const isActive = panel.dataset.tab === target;
+            panel.classList.toggle('active', isActive);
+            panel.classList.remove('is-exiting');
+            panel.hidden = !isActive;
+            panel.setAttribute('aria-hidden', String(!isActive));
+          });
+          activeTab = target;
+        }, 320);
+        return;
+      }
+
+      activeTab = target;
     }
 
     tabButtons.forEach((button) => {
       button.addEventListener('click', () => activateTab(button.dataset.tab));
     });
+
+    activateTab('character');
   </script>
 </body>
 
