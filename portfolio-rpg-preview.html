@@ -154,11 +154,12 @@
     }
 
     .tab-panel {
-      display: none;
-      margin: 0 18px;
+      display: block;
+      margin: 18px 18px 0;
       opacity: 0;
-      transform: translateY(8px) scale(0.98);
-      transition: opacity 0.32s ease, transform 0.36s ease;
+      pointer-events: none;
+      transform: translateY(18px);
+      transition: opacity 0.28s ease, transform 0.32s ease;
     }
 
     .tab-panel[hidden] {
@@ -166,14 +167,15 @@
     }
 
     .tab-panel.active {
-      display: block;
       opacity: 1;
-      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
     .tab-panel.is-exiting {
       opacity: 0;
-      transform: translateY(10px) scale(0.97);
+      pointer-events: none;
+      transform: translateY(-18px);
     }
 
     .profile-summary {
@@ -296,14 +298,7 @@
       grid-template-columns: 1.25fr 0.75fr;
       gap: 18px;
       padding: 18px;
-      transition: opacity 0.28s ease, transform 0.32s ease;
-    }
-
-    .game-shell.profile-compact .tab-panel[data-tab="character"] {
-      opacity: 0.36;
-      transform: translateY(10px) scaleY(0.88);
-      transform-origin: top center;
-      filter: blur(0.35px);
+      transition: none;
     }
 
     .panel {
@@ -838,9 +833,11 @@
         opacity: 0;
         transform: translate(0, 0) scale(0.15);
       }
+
       10% {
         opacity: 1;
       }
+
       100% {
         opacity: 1;
         transform: translate(var(--x), var(--y)) scale(1);
@@ -975,7 +972,8 @@
   <div class="game-shell">
     <header class="top-bar">
       <div class="menu" role="tablist" aria-label="Portfolio navigation">
-        <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="character">Character</button>
+        <button class="tab-btn active" type="button" role="tab" aria-selected="true"
+          data-tab="character">Character</button>
         <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="inventory">Inventory</button>
         <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="quests">Quest Log</button>
         <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="gallery">Bestiary</button>
@@ -1472,7 +1470,6 @@
 
     function activateTab(target) {
       const previousTab = activeTab;
-      const isLeavingCharacter = previousTab === 'character' && target !== 'character';
 
       tabButtons.forEach((button) => {
         const isActive = button.dataset.tab === target;
@@ -1482,13 +1479,13 @@
 
       tabPanels.forEach((panel) => {
         const isTarget = panel.dataset.tab === target;
-        const isPrevious = panel.dataset.tab === previousTab && isLeavingCharacter;
+        const isPrevious = panel.dataset.tab === previousTab && previousTab !== target;
         const isActive = isTarget || isPrevious;
 
-        panel.classList.toggle('active', isActive);
+        panel.classList.toggle('active', isTarget);
         panel.classList.toggle('is-exiting', isPrevious);
         panel.hidden = !isActive;
-        panel.setAttribute('aria-hidden', String(!isActive));
+        panel.setAttribute('aria-hidden', String(!isTarget));
       });
 
       const shouldShowSummary = target !== 'character';
@@ -1497,21 +1494,16 @@
         profileSummary.classList.toggle('visible', shouldShowSummary);
       });
 
-      if (isLeavingCharacter) {
-        setTimeout(() => {
-          tabPanels.forEach((panel) => {
-            const isActive = panel.dataset.tab === target;
-            panel.classList.toggle('active', isActive);
-            panel.classList.remove('is-exiting');
-            panel.hidden = !isActive;
-            panel.setAttribute('aria-hidden', String(!isActive));
-          });
-          activeTab = target;
-        }, 320);
-        return;
-      }
-
-      activeTab = target;
+      setTimeout(() => {
+        tabPanels.forEach((panel) => {
+          const isActive = panel.dataset.tab === target;
+          panel.classList.toggle('active', isActive);
+          panel.classList.remove('is-exiting');
+          panel.hidden = !isActive;
+          panel.setAttribute('aria-hidden', String(!isActive));
+        });
+        activeTab = target;
+      }, 320);
     }
 
     tabButtons.forEach((button) => {
