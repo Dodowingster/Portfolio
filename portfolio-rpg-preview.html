@@ -86,20 +86,6 @@
       position: relative;
     }
 
-    .game-shell::after {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border: 3px solid var(--bronze-deep);
-      right: 12px;
-      bottom: 12px;
-      border-left: none;
-      border-top: none;
-      background: rgba(255, 255, 255, 0.03);
-      pointer-events: none;
-    }
-
     .top-bar {
       display: flex;
       align-items: center;
@@ -167,7 +153,7 @@
     }
 
     .tab-panel.active {
-      display: block;
+      display: grid;
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
@@ -177,7 +163,7 @@
       display: block;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(18px);
+      transform: translateY(24px);
     }
 
     .profile-summary {
@@ -317,6 +303,7 @@
         inset 0 0 18px rgba(74, 48, 30, 0.08),
         0 6px 0 rgba(34, 20, 12, 0.4);
       position: relative;
+      margin-bottom: 18px;
     }
 
     .panel-header {
@@ -461,7 +448,6 @@
       display: grid;
       gap: 14px;
       padding: 18px;
-      margin-top: 22px;
     }
 
     .status-row {
@@ -543,10 +529,8 @@
     }
 
     .content-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      display: block;
       gap: 18px;
-      padding: 0 18px 18px;
     }
 
     .quest-list,
